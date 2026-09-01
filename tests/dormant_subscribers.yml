@@ -1,0 +1,14 @@
+name: dormant_subscribers
+prompt: Wie viele Subscription-Kund:innen, die im April 2026 durchgehend aktiv waren, haben in diesem Monat kein einziges Response-Paket gekauft?
+sql: |
+  SELECT COUNT(DISTINCT c.id) AS dormant_subscribers
+  FROM customers c
+  JOIN subscriptions s ON s.customer_id = c.id
+  WHERE s.started_at < '2026-04-01 00:00:00+02:00'
+    AND (s.canceled_at IS NULL OR s.canceled_at > '2026-04-30 23:59:59+02:00')
+    AND NOT EXISTS (
+      SELECT 1 FROM response_packages p
+      WHERE p.customer_id = c.id
+        AND p.purchased_at >= '2026-04-01 00:00:00+02:00'
+        AND p.purchased_at <  '2026-05-01 00:00:00+02:00'
+    );

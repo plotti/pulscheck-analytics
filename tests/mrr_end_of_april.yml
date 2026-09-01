@@ -1,0 +1,8 @@
+name: mrr_end_of_april
+prompt: Wie hoch war der MRR Ende April 2026?
+sql: |
+  SELECT ROUND(SUM(monthly_price_chf), 2) AS mrr_chf,
+         COUNT(*) AS active_subscriptions
+  FROM subscriptions
+  WHERE started_at <= '2026-04-30 23:59:59+02:00'
+    AND (canceled_at IS NULL OR canceled_at > '2026-04-30 23:59:59+02:00');

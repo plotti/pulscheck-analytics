@@ -1,0 +1,18 @@
+name: package_revenue_q1
+prompt: Welches Response-Paket (S, M oder XL) hatte im Q1 2026 den höchsten Umsatzanteil? Bitte mit Umsatz und Prozentanteil je Paketgrösse.
+sql: |
+ WITH q1_packages AS (
+      SELECT
+          package_size,
+          price_chf
+      FROM response_packages
+      WHERE purchased_at >= '2026-01-01 00:00:00+01:00'
+        AND purchased_at < '2026-04-01 00:00:00+02:00'
+  )
+  SELECT
+      package_size,
+      ROUND(SUM(price_chf), 2) AS umsatz_chf,
+      ROUND(100.0 * SUM(price_chf) / (SELECT SUM(price_chf) FROM q1_packages), 1) AS anteil_prozent
+  FROM q1_packages
+  GROUP BY package_size
+  ORDER BY umsatz_chf DESC;

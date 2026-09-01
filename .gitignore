@@ -1,0 +1,21 @@
+# Secrets
+.env
+
+# Generated DuckDB database
+pulscheck.duckdb
+*.duckdb-wal
+*.duckdb
+pulscheck.db
+open
+
+# nao test outputs
+tests/outputs/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store

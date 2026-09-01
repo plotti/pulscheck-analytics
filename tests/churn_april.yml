@@ -1,0 +1,10 @@
+name: churn_april
+prompt: Wie viele Kund:innen haben wir im April 2026 verloren, und wie viel MRR ging dadurch verloren?
+sql: |
+  SELECT
+    COUNT(*) AS churned_customers,
+    ROUND(SUM(monthly_price_chf), 2) AS lost_mrr_chf
+  FROM subscriptions
+  WHERE canceled_at >= '2026-04-01 00:00:00+02:00'
+    AND canceled_at <= '2026-04-30 23:59:59+02:00'
+    AND started_at  <  '2026-04-01 00:00:00+02:00';
