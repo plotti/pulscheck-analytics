@@ -25,5 +25,5 @@ databases:
 repos: []
 llm:
   provider: anthropic
-  api_key: REDACTED
+  api_key: ${ANTHROPIC_API_KEY}   # aus .env (siehe .env.example), nicht committen!
   annotation_model: claude-3-7-sonnet-latest
