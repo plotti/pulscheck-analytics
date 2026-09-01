@@ -1,10 +1,10 @@
 # Secrets
 .env
 
-# Generated DuckDB database
-pulscheck.duckdb
+# DuckDB artifacts (die Demo-DB pulscheck.duckdb ist ausnahmsweise im Repo)
 *.duckdb-wal
 *.duckdb
+!pulscheck.duckdb
 pulscheck.db
 open
 

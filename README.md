@@ -21,6 +21,7 @@ selbst zu reproduzieren:
 pip install duckdb
 
 # 2. Datenbank seeden (deterministisch, Seed=42)
+#    Alternativ: fertige Demo-DB liegt im Repo (pulscheck.duckdb) → Schritt optional
 python seed.py
 
 # 3. Tests gegen die DB validieren (ohne LLM)
@@ -39,7 +40,7 @@ pulscheck-analytics/
 ├── seed.py                        # Generator für 280k+ Zeilen
 ├── verify_tests.py                # Verifikationsskript für Erwartungswerte
 ├── run_tests.py                   # Lokaler Test-Runner (nao-test-Pendant)
-├── pulscheck.duckdb               # DuckDB-DB (von seed.py erzeugt)
+├── pulscheck.duckdb               # Fertige Demo-DB (im Repo, via seed.py reproduzierbar)
 ├── nao_config.yaml                # nao-Konfiguration
 ├── RULES.md                       # Kanonische Geschäftsregeln (MECE)
 ├── tests/
